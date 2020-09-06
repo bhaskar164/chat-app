@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <h1>Welcome to Chat box 101</h1>
     <div class="container">
         <div class="inbox">
             <div class="inbox__people">
@@ -19,17 +20,17 @@
                 <div class="fallback"></div>
             </div>
         </div>
+        <input type="text" class="message_form__input" placeholder="Type a message" />
+        <button onclick='send()' class="message_form__button">
+            Send
+        </button>
+        <div class="output">
 
-        <form class="message_form">
-            <input type="text" class="message_form__input" placeholder="Type a message" />
-            <button class="message_form__button" type="submit">
-                Enter
-            </button>
-        </form>
+        </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
-    <script src="main.js"></script>
+    <script src="client.js"></script>
 </body>
 
 </html>
