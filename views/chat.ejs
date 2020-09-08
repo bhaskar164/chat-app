@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Socket.io simple chat</title>
+    <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+    <h1>Welcome to Chat box 101</h1>
+    <%if(isLogged){%>
+    <p>
+        User:-<%=currentUser%>
+    </p>
+    <%}%>
+    <div class="container">
+        <div class="inbox">
+            <div class="inbox__people">
+                
+                <h4>Chat Here :-</h4>
+            </div>
+            <div class="inbox__messages">
+                <div class="messages__history"></div>
+                <div class="fallback"></div>
+            </div>
+        </div>
+        <div>
+            <input type="text" class="message_form__input" placeholder="Type a message" />
+            <button onclick='send()' class="message_form__button">
+                Send
+            </button>
+        </div>
+
+        <div class="output">
+
+        </div>
+    </div>
+    <%if(isLogged){%>
+    <a href="/logout">Logout</a>
+    <%}%>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script src="/client.js"></script>
+</body>
+
+</html>

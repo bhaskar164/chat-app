@@ -15,5 +15,5 @@ let send = () => {
 
 // clientSocket.emit('message', 'hey server@');
 clientSocket.on('message', (data) => {
-    console.log(data);
+    messageDisplay.innerHTML += `<li>you recieved:- ${data}</li>`;
 })

@@ -31,6 +31,15 @@ con.connect(function (err) {
 const PORT = 5000;
 const app = express();
 
+
+
+const server = app.listen(PORT, function () {
+  console.log(`Listening on port ${PORT}`);
+  console.log(`http://localhost:${PORT}`);
+});
+
+
+
 //Creating express-session must be on top
 app.use(session({
   secret: 'ssshhhhh',
@@ -62,11 +71,8 @@ app.use(bodyParser.urlencoded({
 
 
 
-const server = app.listen(PORT, function () {
-  console.log(`Listening on port ${PORT}`);
-  console.log(`http://localhost:${PORT}`);
-});
-//~~~~~~~~~~Socket setup on server side~~~~~~~~~~~~
+//~~~~~~~~~~Socket setup on server side~~~~~~~~~~~~\
+/////////////Working great if written after starting the session!////////////////
 const io = serverSocket(server);
 
 io.on("connection", function (socket) {
@@ -77,11 +83,14 @@ io.on("connection", function (socket) {
   //make sure to handle all the events using "socket"
   socket.on("message", (data) => {
     console.log(data);
-    socket.broadcast.emit("message", "Recieved");
+    socket.broadcast.emit("message", data);
   });
 
   // socket.emit('message', 'hey client!');
 });
+
+
+
 
 
 
@@ -111,6 +120,11 @@ app.get('/logout', (req, res) => {
   });
   res.redirect('/');
 
+});
+
+app.get('/chat', (req, res) => {
+  // console.log(req.session);
+  res.render('chat');
 });
 
 //POST ROUTES
@@ -159,7 +173,7 @@ app.post('/login', (req, res) => {
         req.session.loggedIn = true;
         // console.log('***********');
         // console.log(req.session);
-        res.redirect('/');
+        res.redirect('/chat');
       }
     }
 
